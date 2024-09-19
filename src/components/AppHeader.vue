@@ -15,20 +15,24 @@ export default {
 
 <style scoped>
 header {
-    font-family: "Open Sans", sans-serif;
-    background-color: #343a40;
-    color: #fff;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-bottom: 2px solid #41f3fd;
 }
 
 .logo {
-    height: 50px;
-    margin-right: 1rem;
+    height: 60px;
+    margin-right: 1.5rem;
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 </style>

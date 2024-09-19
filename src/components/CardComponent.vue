@@ -6,37 +6,46 @@ export default {
             type: Object,
             required: true
         }
+    },
+    methods: {
+        showDetails() {
+            alert(`Dettagli della carta: ${this.card.name}`);
+        }
     }
 }
 </script>
 
 <template>
-    <div id="card-component" class="col-6 col-md-4 col-lg-3 mb-4">
+    <div class="col-2 mb-4"> <!-- Mantiene 5 carte per riga -->
         <div class="card-container">
+            <div class="card-details text-center">
+                <h5 class="card-title">{{ card.name }}</h5>
+                <p class="card-type">{{ card.type }}</p>
+            </div>
             <div class="card-flip">
                 <div class="card-front">
-                    <img src="https://vignette.wikia.nocookie.net/yugioh/images/9/95/SlifertheSkyDragon-GBI-AE-Back.png/revision/latest/scale-to-width-down/328?cb=2010072608370"
-                        alt="Card Back" />
+                    <img :src="card.card_images[0].image_url" alt="Card Front" class="card-image" />
                 </div>
                 <div class="card-back">
-                    <img :src="card.card_images[0].image_url" :alt="card.name" />
+                    <img src="https://vignette.wikia.nocookie.net/yugioh/images/9/95/SlifertheSkyDragon-GBI-AE-Back.png/revision/latest/scale-to-width-down/328?cb=2010072608370" alt="Card Back" class="card-image" />
                 </div>
             </div>
-        </div>
-        <div class="card-details text-center mt-2">
-            <h5 class="card-title mb-4">{{ card.name }}</h5>
-            <p class="card-type">{{ card.type }}</p>
+            <button class="btn btn-primary mt-2" @click="showDetails">Dettagli</button>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .card-container {
     width: 100%;
-    height: 0;
-    padding-bottom: 150%;
+    height: 100%;
     perspective: 1500px;
     position: relative;
+    border: 1px solid #41f3fd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #2c3e50;
+    transition: transform 0.3s;
 }
 
 .card-flip {
@@ -48,12 +57,7 @@ export default {
 }
 
 .card-container:hover .card-flip {
-    transform: rotateY(540deg);
-}
-
-#card-component:hover .card-details {
-    opacity: 1;
-    transform: translateY(0);
+    transform: rotateY(180deg);
 }
 
 .card-front,
@@ -62,26 +66,20 @@ export default {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    top: 0;
-    left: 0;
 }
 
-.card-front img {
+.card-image {
     width: 100%;
     height: auto;
+    border-radius: 10px;
 }
 
 .card-back {
     transform: rotateY(180deg);
-
-    img {
-        width: 100%;
-        height: auto;
-    }
 }
 
 .card-title {
-    color: #fff;
+    color: #ffffff;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -89,15 +87,11 @@ export default {
 .card-type {
     font-size: 0.9rem;
     font-weight: bold;
-}
-
-.card-title,
-.card-type {
-    font-family: "Krub", sans-serif;
+    color: #ecf0f1;
 }
 
 .card-details {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 </style>
