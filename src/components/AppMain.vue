@@ -63,7 +63,9 @@ export default {
                 <h4>Carte totali: {{ cards.length }}</h4>
             </div>
             <div class="row justify-content-center">
-                <CardComponent v-for="card in cards" :key="card.id" :card="card" />
+                <div class="col-2" v-for="card in cards" :key="card.id">
+                    <CardComponent :card="card" />
+                </div>
             </div>
         </div>
     </main>
