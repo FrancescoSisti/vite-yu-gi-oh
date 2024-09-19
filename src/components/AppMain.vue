@@ -18,28 +18,28 @@ export default {
         };
     },
     mounted() {
-        // Effettuo la chiamata API per il montaggio del componente
+
         this.fetchCards();
     },
     methods: {
         fetchCards() {
             const minLoadingTime = 1000;
 
-            // Creo una variabile per tenere traccia del tempo iniziale
+
             const startTime = Date.now();
 
             axios
                 .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
                 .then((response) => {
-                    // Inserisco nell'array i dati ricevuti
+
                     this.cards = response.data.data;
                 })
                 .finally(() => {
 
-                    // Calcolo il tempo trascorso dalla chiamata API
+
                     const elapsedTime = Date.now() - startTime;
 
-                    // Se il caricamento è stato troppo veloce, aspetto che passino i 3 secondi
+
                     const remainingTime = minLoadingTime - elapsedTime;
 
                     if (remainingTime > 0) {
